@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Joti+One');
+body {
+    top: 0;
+    background-image: url(background_image.jpg);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-size: inherit;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#textAreaParent {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#inputNewTask {
+    background-image: url(notepadBackground_image.jpg);
+    font-size: 1.5rem;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    line-height: 50px;
+    width: 100%;
+    padding-left: 5rem;
+    padding-right: 9.5rem;
+    padding-top: .5rem;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.button {
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    display: inline-block;
+    margin: 0 auto;
+
+    -webkit-border-radius: 10px;
+
+    -webkit-box-shadow: 0px 3px rgba(128, 128, 128, 1), /* gradient effects */
+    0px 4px rgba(118, 118, 118, 1),
+    0px 5px rgba(108, 108, 108, 1),
+    0px 6px rgba(98, 98, 98, 1),
+    0px 7px rgba(88, 88, 88, 1),
+    0px 8px rgba(78, 78, 78, 1),
+    0px 14px 6px -1px rgba(128, 128, 128, 1);
+    /* shadow */
+    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
+}
+
+#sumbitBtn {
+    font-family: 'Joti One', cursive;
+    font-size: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: none;
+    margin-top: 1rem;
+}
+
+#timeInput {
+    background-color: transparent;
+    font-family: 'Joti One', cursive;
+    font-size: 1rem;
+    border: none;
+    position: absolute;
+    top: 40%;
+    right: 7%;
+}
+
+#dateInput {
+    background-color: transparent;
+    font-family: 'Joti One', cursive;
+    font-size: .8rem;
+    border: none;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+#noteParent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+    align-items: center;
+    transition-delay: 2s;
+}
+
+.note {
+    border-right: 3px solid grey;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 15rem;
+    background-color: #f6ff99;
+    padding: .5rem;
+    margin: .5rem;
+    height: 264px;
+    clip-path: polygon(100% 0, 100% 79%, 64% 100%, 0 100%, 0 0);
+}
+
+.note:before {
+    content: url(thumbtack_pushpin.png);
+    display: block;
+}
+
+.note:after {
+    content: attr(div);
+    clip-path: polygon(0 0, 0% 100%, 50% 0);
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    background-color: grey;
+    bottom: -5.5%;
+    right: -9%;
+    transform: rotate(31deg);
+    transition-delay: 2s;
+}
+
+.note_text {
+    width: 100%;
+    height: 150px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-size: 1.3rem;
+    border: none;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 0;
+}
+
+
+.note_date {
+    width: 100%;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.note_time {
+    width: 100%;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.note_checked {
+    position: absolute;
+    left: 5%;
+}
+
+
+
+/* close button */
+
+.closeBtn {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 2%;
+    top: 7%;
+}
+
+
+.icon {
+    background: transparent;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    transition: box-shadow .2s ease;
+}
+
+
+.icon:hover .lid,
+.icon:hover .lidcap {
+    transform: rotate(10deg);
+    margin-bottom: 5px;
+}
+
+.lidcap,
+.lid,
+.bin {
+    position: absolute;
+}
+
+.lidcap,
+.lid {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: grey;
+    transition: transform .2s linear, margin .2s linear;
+}
+
+.lidcap {
+    bottom: 60px;
+    left: 25px;
+    height: 4px;
+    width: 10px;
+}
+
+.lid {
+    bottom: 56px;
+    left: 15px;
+    width: 30px;
+    height: 5px;
+}
+
+.bin {
+    left: 15px;
+    width: 20px;
+    border-top: 20px solid grey;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+.lidcap:fucos {
+    outline: none;
+}
+
+.lid:focus {
+    outline: none;
+}
+
+.bin:focus {
+    outline: none;
+}
+
+.closeBtn:focus {
+    outline: none;
+}
+
+
+
+/* note animation */
+
+@keyframes my-animation {
+    from {
+        opacity: 0;
+        left: -500px;
+    }
+    to {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+.run-animation {
+    position: relative;
+    animation: my-animation 2s ease;
+}
+
+
+
+/*scroller style */
+
+#style-6::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+#style-6::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+#style-6::-webkit-scrollbar-thumb {
+    background-color: #F90;
+    background-image: -webkit-linear-gradient(45deg,
+    rgba(255, 255, 255, .2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, .2) 50%,
+    rgba(255, 255, 255, .2) 75%,
+    transparent 75%,
+    transparent)
+}
+
+
+/* checked note */
+
+.noteChecked:before {
+    content: url(thumbtack_pushpin.png);
+    display: block;
+}
+
+.noteChecked {
+    border-right: 3px solid grey;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 15rem;
+    background-color: #a5ef86;
+    padding: .5rem;
+    margin: .5rem;
+    height: 264px;
+    clip-path: polygon(100% 0, 100% 79%, 64% 100%, 0 100%, 0 0);
+}
+
+.noteChecked:after {
+    content: attr(div);
+    clip-path: polygon(0 0, 0% 100%, 50% 0);
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    background-color: grey;
+    bottom: -5.5%;
+    right: -9%;
+    transform: rotate(31deg);
+}
+
+.checkedSpan {
+    position: absolute;
+    top: 15%;
+    font-family: 'Indie Flower', cursive;
+    color: #2f820d;
+    font-weight: bold;
+}
+
+.note_label {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid grey;
+    color: grey;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 2px 2px lightgrey;
+}
+
+.note_checked {
+    visibility: hidden;
+}
