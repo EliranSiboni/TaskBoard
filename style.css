@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 @import url('https://fonts.googleapis.com/css?family=Joti+One');
+@import url('https://fonts.googleapis.com/css?family=Supermercado+One');
 body {
     top: 0;
     background-image: url(background_image.jpg);
@@ -7,6 +8,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     background-size: inherit;
+    position: relative;
 }
 
 h1 {
@@ -62,11 +64,38 @@ textarea:focus {
 #sumbitBtn {
     font-family: 'Joti One', cursive;
     font-size: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: -webkit-linear-gradient(left, rgba(146, 140, 140, 1) 0%, rgba(78, 78, 78, 1) 62%, rgba(81, 81, 81, 0.7) 68%, rgba(95, 95, 95, 0) 100%);
     border-radius: 10px;
-    padding: 0.5rem;
-    border: none;
+    padding: 1rem;
+    border-radius: 25px;
+    padding-right: 5rem;
+    border: 1px solid grey;
     margin-top: 1rem;
+    color: white;
+    text-shadow: 2px 2px black;
+    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+
+#sumbitLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#paperPlane {
+    position: absolute;
+    right: 0;
+    top: 20%;
+    transform: rotate(40deg);
+    transition-duration: 3s;
+}
+
+#sumbitLabel:hover #paperPlane {
+    transform: translateX(200px);
+    transition-duration: 2s;
+    opacity: 0;
+    visibility: hidden;
 }
 
 #timeInput {
@@ -75,7 +104,7 @@ textarea:focus {
     font-size: 1rem;
     border: none;
     position: absolute;
-    top: 40%;
+    top: 35%;
     right: 7%;
 }
 
@@ -166,6 +195,7 @@ textarea:focus {
 
 
 
+
 /* close button */
 
 .closeBtn {
@@ -248,6 +278,7 @@ textarea:focus {
 
 
 
+
 /* note animation */
 
 @keyframes my-animation {
@@ -265,6 +296,7 @@ textarea:focus {
     position: relative;
     animation: my-animation 2s ease;
 }
+
 
 
 
@@ -293,11 +325,15 @@ textarea:focus {
 }
 
 
+
 /* checked note */
 
 .noteChecked:before {
-    content: url(thumbtack_pushpin.png);
     display: block;
+    content: "done!";
+    padding: 1.1rem;
+    color: green;
+    font-family: 'Supermercado One', cursive;
 }
 
 .noteChecked {

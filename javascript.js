@@ -39,15 +39,16 @@ document.querySelector('form').addEventListener('submit', function(event) {
     var noteText = form.querySelector('textarea').value.trim();
     var noteDate = form.querySelector('[name="date"]').value;
     var noteTime = form.querySelector('[name="time"]').value;
-    var noteChecked;
+    var noteChecked = false;
 
-    console.log(noteText)
+
 
     var newNote = {
         noteText,
         noteDate,
         noteTime,
         noteChecked
+
 
     };
 
@@ -115,9 +116,11 @@ function createNewNote(noteObject) {
     createCheckBox.classList.add('note_checked');
     createCheckBox.setAttribute("type", "checkbox");
     createCheckBox.setAttribute("name", "checkbox");
+    createCheckBox.checked = noteObject.noteChecked;
 
 
-    parentDiv.appendChild(createNoteDiv);
+    //parentDiv.appendChild(createNoteDiv);
+    parentDiv.insertAdjacentElement('afterbegin', createNoteDiv)
     createNoteDiv.appendChild(createButton);
 
     createButton.appendChild(createIconDiv);
@@ -132,20 +135,10 @@ function createNewNote(noteObject) {
     createCheckboxLabel.appendChild(createCheckBox);
     createNoteDiv.appendChild(createCheckboxLabel);
 
-    var noteCheckedCheck = noteObject.noteChecked;
 
-    if (noteCheckedCheck) {
+    if (createCheckBox.checked) {
 
-        createNoteDiv.classList.add('noteChecked');
-        createCheckBox.checked = true;
-
-        var doneAtt = document.createElement('span');
-        doneAtt.classList.add('checkedSpan');
-        doneAtt.innerHTML = "Done!";
-
-        createNoteDiv.appendChild(doneAtt);
-
-
+        ifCheckedIsTrue(createNoteDiv);
 
     }
 
@@ -174,45 +167,24 @@ function createNewNote(noteObject) {
 
         var form = event.target;
 
+        var parentNoteElement = form.parentElement.parentElement;
+
         var index = Array.from(document.querySelectorAll('.note')).indexOf(form.parentElement.parentElement);
-        var ifChecked = currentNote[index].noteChecked;
-        console.log(ifChecked);
+        currentNote[index].noteChecked = form.checked;
+
+
 
         if (this.checked) {
 
-
-            console.log(index);
-
-
-            ifChecked = true;
-
-
             updateBackup(currentNote);
-            console.log(index);
 
-            form.parentElement.parentElement.classList.add('noteChecked');
-
-
-
-            var doneAtt = document.createElement('span');
-            doneAtt.classList.add('checkedSpan');
-            doneAtt.innerHTML = "Done!";
-
-
-
-            form.parentElement.parentElement.appendChild(doneAtt);
+            ifCheckedIsTrue(parentNoteElement);
 
         } else {
 
-            form.parentElement.parentElement.classList.remove('noteChecked');
-            form.parentElement.parentElement.classList.add('note');
+            parentNoteElement.classList.remove('noteChecked');
+            parentNoteElement.classList.add('note');
 
-
-            var doneSpan = document.querySelector('.checkedSpan');
-
-            doneSpan.remove();
-
-            ifChecked = false;
 
             updateBackup(currentNote);
 
@@ -228,6 +200,16 @@ function createNewNote(noteObject) {
 
 function updateBackup(noteObject) {
     localStorage.setItem('currentNote', JSON.stringify(noteObject));
+}
+
+function ifCheckedIsTrue(element) {
+
+    element.classList.add('noteChecked');
+
+}
+
+function ifCheckedIsFalse(argument) {
+
 }
 
 // date 
