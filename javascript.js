@@ -56,10 +56,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
     createNewNote(newNote);
 
-
-
-    currentNote.unshift(newNote);
-
+    currentNote.push(newNote);
 
     updateBackup(currentNote);
 
@@ -67,9 +64,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 
 });
-
-
-
 
 // create a new note
 
@@ -119,8 +113,8 @@ function createNewNote(noteObject) {
     createCheckBox.checked = noteObject.noteChecked;
 
 
-    //parentDiv.appendChild(createNoteDiv);
-    parentDiv.insertAdjacentElement('afterbegin', createNoteDiv)
+    parentDiv.appendChild(createNoteDiv);
+    //parentDiv.insertAdjacentElement('afterbegin', createNoteDiv)
     createNoteDiv.appendChild(createButton);
 
     createButton.appendChild(createIconDiv);
@@ -150,19 +144,22 @@ function createNewNote(noteObject) {
 
         var form = event.target;
 
-        var index = Array.from(document.querySelectorAll('.note')).indexOf(event.target.parentElement.parentElement.parentElement);
+        var indexArray = Array.from(document.querySelectorAll('.note'));
+        var index = indexArray.indexOf(event.target.parentElement.parentElement.parentElement);
 
         console.log(index);
 
-        currentNote.splice(index, 1);
 
-        form.parentElement.parentElement.parentElement.remove();
+        indexArray.splice(index, 1);
+
+        currentNote.splice(index, 1);
 
         updateBackup(currentNote);
 
+        form.parentElement.parentElement.parentElement.remove();
 
     });
-
+    // checkbox
     createCheckBox.addEventListener('change', function(event) {
 
         var form = event.target;
@@ -171,8 +168,6 @@ function createNewNote(noteObject) {
 
         var index = Array.from(document.querySelectorAll('.note')).indexOf(form.parentElement.parentElement);
         currentNote[index].noteChecked = form.checked;
-
-
 
         if (this.checked) {
 
@@ -185,12 +180,77 @@ function createNewNote(noteObject) {
             parentNoteElement.classList.remove('noteChecked');
             parentNoteElement.classList.add('note');
 
+            updateBackup(currentNote);
+
+        }
+        // edit note
+    });
+    createTextArea.addEventListener('dblclick', function(event) {
+        console.log('dblclicked');
+
+        var form = event.target;
+
+        form.remove();
+        var createForm = document.createElement('form');
+        var createTextAreaEdit = document.createElement('textarea');
+        var createInputSubmit = document.createElement('input');
+
+        createTextAreaEdit.classList.add('editNote');
+        createTextAreaEdit.setAttribute('placeholder', form.innerHTML);
+        createTextAreaEdit.value = form.innerHTML;
+
+        createInputSubmit.setAttribute('type', 'submit');
+        createInputSubmit.setAttribute('value', 'save');
+        createInputSubmit.setAttribute('id', 'saveEditedText');
+
+
+        createForm.appendChild(createTextAreaEdit);
+        createForm.appendChild(createInputSubmit);
+        createButton.insertAdjacentElement('afterend', createForm);
+
+        createForm.addEventListener('submit', function(event) {
+
+            var form = event.target;
+
+
+            event.preventDefault();
+
+            var newEditedText = form.querySelector('textarea').value.trim();
+
+            var indexArray = Array.from(document.querySelectorAll('.note'));
+
+            var index = indexArray.indexOf(event.target.parentElement);
+
+
+            var lastModifiedSpan = document.createElement('span');
+            lastModifiedSpan.classList.add('lastModifiedSpan');
+            var lastModifiedText = lastModifiedSpan.innerHTML = " Last modified at " + new Date();
+
+
+            console.log(index);
+
+            currentNote[index].noteText = newEditedText;
+            currentNote[index].lastModified = lastModifiedText;
+
+            form.remove();
+
+            createTextArea.classList.add('note_text', 'scroller');
+
+            createTextArea.setAttribute("id", "style-6");
+
+            createTextArea.innerHTML = newEditedText;
+
+            //createNoteDiv.appendChild(lastModifiedSpan);
+
+            createButton.insertAdjacentElement('afterend', createTextArea);
+
+
+            console.log(newEditedText);
 
             updateBackup(currentNote);
 
+        });
 
-
-        }
 
     });
 

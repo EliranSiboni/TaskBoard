@@ -1,0 +1,43 @@
+@media screen and (max-width: 767px) {
+    .icon:hover .lid,
+    .icon:hover .lidcap {
+        transform: none;
+        margin-bottom: 0;
+    }
+
+    #sumbitLabel:hover #paperPlane {
+        transform: none;
+        transition-duration: none;
+        opacity: 1;
+        visibility: hidden;
+    }
+    #paperPlane {
+        display: none;
+        transition-duration: 3s;
+    }
+
+    #textAreaParent {
+        width: 100%;
+    }
+    #inputNewTask {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    h1 {
+        width: 100%;
+    }
+    #timeInput {
+        position: initial;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 2rem;
+        width: 100%;
+    }
+    #dateInput {
+        position: initial;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 2rem;
+        width: 100%;
+    }
+}
